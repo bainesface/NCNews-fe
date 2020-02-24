@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from './Login';
+import { Link } from '@reach/router';
 
 class Header extends Component {
   state = {
@@ -9,7 +10,9 @@ class Header extends Component {
     const { username } = this.state;
     return (
       <header className="App-header">
-        <h1>NC News</h1>
+        <h1>
+          <Link to="/articles">NC News</Link>
+        </h1>
         <Login showWelcomeMessage={this.showWelcomeMessage} />
         {username !== '' && <p>Welcome {username}</p>}
       </header>
@@ -17,7 +20,6 @@ class Header extends Component {
   }
 
   showWelcomeMessage = username => {
-    console.log(username);
     this.setState({ username });
   };
 }

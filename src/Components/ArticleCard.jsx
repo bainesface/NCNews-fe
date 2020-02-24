@@ -7,23 +7,23 @@ const ArticleCard = ({
   title,
   votes,
   author,
-  body,
+  created_at,
   comment_count
 }) => {
   return (
     <li>
-      <h1>
+      <h2 className="articleTitle">
         <Link to={`/articles/${article_id}`}>{title}</Link>
-      </h1>
-      <h2>
+      </h2>
+      <h3 className="articleVotes">
         <span role="img" aria-label="votes">
           🗳️
         </span>{' '}
         {votes}
-      </h2>
-      <h3>By {author}</h3>
-      <p>{body}</p>
-      <p>
+      </h3>
+      <h4 className="articleAuthor">By {author}</h4>
+      <p className="articleDate">{new Date(created_at).toDateString()}</p>
+      <p className="articleCommentCount">
         <span role="img" aria-label="commentcount">
           💬{' '}
         </span>
