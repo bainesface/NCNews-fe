@@ -1,22 +1,46 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import CommentsList from './CommentsList';
+import AddComment from './AddComment';
+import LoadingIndicator from './LoadingIndicator';
 
 class Comments extends Component {
   state = {
-    comments: []
+    comments: [],
+    isLoading: true
   };
   render() {
-    const { comments } = this.state;
-    return <CommentsList comments={comments} />;
+    const { comments, isLoading } = this.state;
+    const { article_id } = this.props;
+    return (
+      <>
+        {isLoading ? (
+          <LoadingIndicator LoadingIndicator={LoadingIndicator} />
+        ) : (
+          <>
+            <AddComment
+              article_id={article_id}
+              showComment={this.showComment}
+            />
+            <CommentsList comments={comments} />
+          </>
+        )}
+      </>
+    );
   }
 
   componentDidMount() {
     const { article_id } = this.props;
     api.getComments(article_id).then(res => {
-      this.setState({ comments: res });
+      this.setState({ comments: res, isLoading: false });
     });
   }
+
+  showComment = comment => {
+    this.setState(currentState => {
+      return { comments: [comment, ...currentState.comments] };
+    });
+  };
 }
 
 export default Comments;

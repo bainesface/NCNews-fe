@@ -6,7 +6,7 @@ import Comments from './Comments';
 
 class ArticleById extends Component {
   state = {
-    article: []
+    article: {}
   };
 
   render() {
@@ -19,11 +19,10 @@ class ArticleById extends Component {
       votes,
       comment_count
     } = this.state.article;
-    console.log(article_id);
     return (
       <main>
         <button>
-          <Link to="/articles">Back to all Articles</Link>
+          <Link to="/articles">Back to All Articles</Link>
         </button>
         <h2>{title}</h2>
         <h3>By {author}</h3>
@@ -34,7 +33,8 @@ class ArticleById extends Component {
           <span role="img" aria-label="votes">
             🗳️
           </span>{' '}
-          {votes}
+          {votes} {'  '}
+          <button onClick={this.increaseVotes}>Vote for article</button>
         </p>{' '}
         <p>
           {' '}
@@ -50,12 +50,26 @@ class ArticleById extends Component {
     );
   }
 
-  componentDidMount() {
+  fetchArticle = () => {
     const { article_id } = this.props;
     api.getArticle(article_id).then(res => {
       this.setState({ article: res });
     });
-  }
-}
+  };
 
+  componentDidMount() {
+    this.fetchArticle();
+  }
+
+  increaseVotes = () => {
+    const { votes } = this.state.article;
+    const { article_id } = this.props;
+    this.setState(currentState => {
+      return {
+        article: { ...currentState.article, votes: votes + 1 }
+      };
+    });
+    api.addArticleVote(1, article_id);
+  };
+}
 export default ArticleById;

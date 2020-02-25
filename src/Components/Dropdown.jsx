@@ -9,7 +9,6 @@ class Dropdown extends Component {
       <div className="dropdown">
         <label className="sortArticles">Sort Articles By</label>
         <select onChange={this.handleChange} value={this.state.sortByValue}>
-          <option value="">-</option>
           <option value="created_at">Date Created</option>
           <option value="comment_count">Comment Count</option>
           <option value="votes">Votes</option>
