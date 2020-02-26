@@ -11,14 +11,17 @@ class Articles extends Component {
     isLoading: true
   };
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, sortValue } = this.state;
     return (
       <>
         {isLoading ? (
           <LoadingIndicator LoadingIndicator={LoadingIndicator} />
         ) : (
           <>
-            <Dropdown changeSortValue={this.changeSortValue} />
+            <Dropdown
+              changeSortValue={this.changeSortValue}
+              sortValue={sortValue}
+            />
             <ArticlesList articles={articles} />
           </>
         )}
@@ -27,14 +30,18 @@ class Articles extends Component {
   }
 
   fetchArticles = value => {
-    api.getArticles({ sort_by: value }).then(res => {
-      this.setState({ articles: res });
-    });
+    api
+      .getArticles(value)
+      .then(res => {
+        this.setState({ articles: res, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({ err });
+      });
   };
 
   componentDidMount() {
     this.fetchArticles();
-    this.setState({ isLoading: false });
   }
 
   componentDidUpdate(prevProps, prevState) {

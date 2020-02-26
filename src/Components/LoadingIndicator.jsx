@@ -6,7 +6,7 @@ function LoadingIndicator() {
     <Loader
       className="loader"
       type="Watch"
-      color="rgb(39, 200, 39)"
+      color="Navy"
       height={150}
       width={250}
     />

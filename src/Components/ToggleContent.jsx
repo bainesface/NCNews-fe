@@ -8,7 +8,7 @@ class ToggleContent extends Component {
     return (
       <div>
         <button className="button" onClick={this.toggleVisibility}>
-          See Comments
+          See/Hide Comments
         </button>
         {this.state.isContentDisplayed && <div>{this.props.children}</div>}
       </div>

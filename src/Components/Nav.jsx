@@ -6,7 +6,7 @@ class Nav extends Component {
   render() {
     const { topics } = this.state;
     return (
-      <nav>
+      <nav className="topicsNav">
         {topics.map(topic => {
           return (
             <Link key={topic} to={`/topics/${topic}`}>

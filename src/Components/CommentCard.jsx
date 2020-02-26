@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import VoteUpdater from './VoteUpdater';
 
 class CommentCard extends Component {
   state = {
     commentDeleted: false,
-    username: 'jessjelly',
+    username: null,
     votes: 0
   };
   render() {
-    const { author, created_at, body } = this.props;
-    const { commentDeleted, votes } = this.state;
+    const { author, created_at, body, comment_id } = this.props;
+    const { commentDeleted, votes, username } = this.state;
+
     return (
       <>
         {commentDeleted ? (
@@ -19,15 +21,12 @@ class CommentCard extends Component {
             <p>{body}</p>
             <p>By {author}</p>
             <p>{new Date(created_at).toDateString()}</p>
-            <p>
-              {' '}
-              <span role="img" aria-label="votes">
-                🗳️
-              </span>{' '}
-              {votes}{' '}
-              <button onClick={this.increaseVotes}>Vote for comment</button>
-            </p>
-            <button onClick={this.removeComment}>Delete Comment</button>
+            <VoteUpdater votes={votes} comment_id={comment_id} />
+            {username === author ? (
+              <button onClick={this.removeComment}>Delete Comment</button>
+            ) : (
+              <p>Log in to delete your comment</p>
+            )}
           </li>
         )}
       </>
@@ -44,14 +43,9 @@ class CommentCard extends Component {
     }
   };
 
-  increaseVotes = () => {
-    const { votes } = this.state;
-    const { comment_id } = this.props;
-    this.setState(currentState => {
-      return { ...currentState, votes: votes + 1 };
-    });
-    api.addCommentVote(1, comment_id);
-  };
+  componentDidMount() {
+    this.setState({ votes: this.props.votes });
+  }
 }
 
 export default CommentCard;

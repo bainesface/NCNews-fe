@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from '@reach/router';
+import VoteUpdater from './VoteUpdater';
 
 const ArticleCard = ({
   article_id,
@@ -15,12 +16,7 @@ const ArticleCard = ({
       <h2 className="articleTitle">
         <Link to={`/articles/${article_id}`}>{title}</Link>
       </h2>
-      <h3 className="articleVotes">
-        <span role="img" aria-label="votes">
-          🗳️
-        </span>{' '}
-        {votes}
-      </h3>
+      <VoteUpdater article_id={article_id} votes={votes} />
       <h4 className="articleAuthor">By {author}</h4>
       <p className="articleDate">{new Date(created_at).toDateString()}</p>
       <p className="articleCommentCount">

@@ -7,20 +7,27 @@ class AddComment extends Component {
     username: 'jessjelly'
   };
   render() {
+    const { username } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Leave a comment{' '}
-          <input
-            required
-            type="text"
-            placeholder="comment here ..."
-            value={this.state.comment}
-            onChange={this.handleTyping}
-          />
-        </label>
-        <button>Submit</button>
-      </form>
+      <>
+        {username ? (
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Leave a comment{' '}
+              <input
+                required
+                type="text"
+                placeholder="comment here ..."
+                value={this.state.comment}
+                onChange={this.handleTyping}
+              />
+            </label>
+            <button>Submit</button>
+          </form>
+        ) : (
+          <p> Log in to leave a comment</p>
+        )}
+      </>
     );
   }
 

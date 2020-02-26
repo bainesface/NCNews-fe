@@ -6,6 +6,8 @@ import Articles from './Components/Articles';
 import ArticleById from './Components/ArticleById';
 import Topics from './Components/Topics';
 import { Router } from '@reach/router';
+import ErrorPage from './Components/ErrorPage';
+import LoginPage from './Components/LoginPage';
 
 function App() {
   return (
@@ -13,9 +15,14 @@ function App() {
       <Header />
       <Nav />
       <Router>
-        <Articles path="/articles" />
-        <ArticleById path="/articles/:article_id" />
+        <Articles path="/" />
+        <ArticleById path="articles/:article_id" />
         <Topics path="/topics/:topic" />
+        <LoginPage path="/login" />
+        <ErrorPage
+          default
+          err={{ status: 404, data: { msg: 'URL Not Found' } }}
+        />
       </Router>
     </main>
   );

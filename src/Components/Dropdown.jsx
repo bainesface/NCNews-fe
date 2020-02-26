@@ -1,27 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Dropdown extends Component {
-  state = {
-    sortByValue: ''
-  };
-  render() {
-    return (
-      <div className="dropdown">
-        <label className="sortArticles">Sort Articles By</label>
-        <select onChange={this.handleChange} value={this.state.sortByValue}>
-          <option value="created_at">Date Created</option>
-          <option value="comment_count">Comment Count</option>
-          <option value="votes">Votes</option>
-        </select>
-      </div>
-    );
-  }
+const Dropdown = props => {
+  const { sortValue, changeSortValue } = props;
 
-  handleChange = event => {
+  const handleChange = event => {
     const { value } = event.target;
-    this.setState({ sortByValue: value });
-    this.props.changeSortValue(value);
+    changeSortValue(value);
   };
-}
+
+  return (
+    <div className="dropdown">
+      <label className="sortArticles">Sort Articles By</label>
+      <select onChange={handleChange} value={sortValue}>
+        <option value="created_at">Date Created</option>
+        <option value="comment_count">Comment Count</option>
+        <option value="votes">Votes</option>
+      </select>
+    </div>
+  );
+};
 
 export default Dropdown;

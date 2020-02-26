@@ -2,40 +2,23 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 50px;
-  display: flex;
-  flex-direction: column;
+.header {
+  background-color: #596f62;
+  display: grid;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #08090a;
   padding: 1em;
+  margin: 0;
+}
+a:-webkit-any-link {
+  color: #08090a;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.h1 {
+  color: #08090a;
 }
 
 .articlesList {
@@ -44,53 +27,88 @@
   padding: 0;
 }
 
-.logInButton {
-  color: #fff;
-}
-
 .articlesList > li {
+  background-color: #f4f7f5;
   display: grid;
   grid-template-areas:
-    'header header votes'
-    'header header votes'
-    'author date date'
-    'commentCount commentCount commentCount ';
-  border: 1.5px solid;
-  padding-left: 0.5em;
+    'votes header header header'
+    'votes header header header'
+    '. author date date'
+    '. commentCount commentCount commentCount';
+  border-radius: 10px;
+  padding-left: 0;
   padding-right: 0.5em;
   margin: 1em;
 }
 
 .articleTitle {
   grid-area: header;
-  padding: 0;
+
+  border-radius: 10px;
+  padding-top: 1em;
+  padding-right: 10px;
+
   margin: 0;
+  font-size: 20px;
+  justify-self: left;
+  text-align: left;
 }
 
 .articleVotes {
   grid-area: votes;
+  text-align: justify;
+  padding-top: 1em;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0;
+}
+
+.voteEmoji {
+  font-size: 12px;
   padding: 0;
   margin: 0;
+}
+
+.voteCount {
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.articleVotes > button {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
 }
 
 .articleAuthor {
   grid-area: author;
+  font-size: 12px;
   padding: 0;
   margin: 0;
+  text-align: left;
 }
 
 .articleDate {
   grid-area: date;
+  font-size: 12px;
   padding: 0;
   margin: 0;
+  text-align: right;
 }
 
 .articleCommentCount {
   grid-area: commentCount;
+  font-size: 12px;
   padding: 0;
   margin: 0;
+  text-align: left;
 }
 
 .commentsList {
   list-style: none;
+}
+
+.topicsNav {
+  background-color: #aaaaaa;
 }
