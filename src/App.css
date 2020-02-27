@@ -3,7 +3,7 @@
   font-family: 'Helvetica Neue';
   display: grid;
   grid-template-rows: auto 150px;
-  grid-template-columns: auto 150px;
+  grid-template-columns: auto 200px;
   grid-template-areas:
     'header header'
     'articles nav';
@@ -150,6 +150,8 @@
   padding-top: 0.2em;
   margin: 0;
   font-size: 2em;
+  background-color: #f4f7f5;
+  border: none;
 }
 
 .articleVotes > button[disabled] {
@@ -203,8 +205,8 @@
   justify-content: space-between;
   padding-top: 2em;
   padding-bottom: 3em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
   height: 15em;
   border-radius: 10px;
 }
