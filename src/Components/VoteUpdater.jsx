@@ -19,27 +19,23 @@ class VoteUpdater extends Component {
           onClick={() => {
             this.updateVotes(1);
           }}
+          disabled={updatedVotes === 1}
         >
           <span role="img" aria-label="upArrow">
-            ⬆️
+            👍
           </span>
         </button>{' '}
-        <p className="voteEmoji">
-          {' '}
-          <span role="img" aria-label="vote emoji">
-            🗳️
-          </span>
-        </p>
         <p className="voteCount">{votes + updatedVotes} </p>
         <button
           onClick={() => {
             this.updateVotes(-1);
           }}
+          disabled={updatedVotes === -1}
         >
           {' '}
           <span role="img" aria-label="downArrow">
             <span role="img" aria-label="uparrow">
-              ⬇️
+              👎
             </span>
           </span>
         </button>

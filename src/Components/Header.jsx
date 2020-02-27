@@ -11,7 +11,9 @@ class Header extends Component {
     return (
       <header className="header">
         <h1 className="h1">
-          <Link to="/">NC News</Link>
+          <Link to="/" className="mainHeader">
+            Topical.
+          </Link>
         </h1>
         <Login showWelcomeMessage={this.showWelcomeMessage} />
       </header>

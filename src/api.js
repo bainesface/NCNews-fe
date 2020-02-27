@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-export const getArticles = (value, topic) => {
+export const getArticles = (sortValue, orderValue, topic) => {
+  console.log(orderValue);
   const baseURL = 'https://bainesface-app.herokuapp.com/api';
 
   return axios
-    .get(baseURL + '/articles', { params: { sort_by: value, topic: topic } })
+    .get(baseURL + '/articles', {
+      params: { sort_by: sortValue, order: orderValue, topic: topic }
+    })
     .then(({ data }) => {
       return data.articles;
     });

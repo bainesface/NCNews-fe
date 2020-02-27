@@ -7,18 +7,18 @@ import ArticleById from './Components/ArticleById';
 import Topics from './Components/Topics';
 import { Router } from '@reach/router';
 import ErrorPage from './Components/ErrorPage';
-import LoginPage from './Components/LoginPage';
+//import LoginPage from './Components/LoginPage';
 
 function App() {
   return (
     <main className="App">
       <Header />
       <Nav />
-      <Router>
+      <Router className="mainContent">
         <Articles path="/" />
         <ArticleById path="articles/:article_id" />
         <Topics path="/topics/:topic" />
-        <LoginPage path="/login" />
+        {/* <LoginPage path="/login" /> */}
         <ErrorPage
           default
           err={{ status: 404, data: { msg: 'URL Not Found' } }}

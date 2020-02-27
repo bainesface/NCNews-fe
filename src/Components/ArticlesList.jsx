@@ -6,7 +6,13 @@ const ArticlesList = props => {
   return (
     <ul className="articlesList">
       {articles.map(article => {
-        return <ArticleCard key={article.article_id} {...article} />;
+        return (
+          <ArticleCard
+            className="articleLink"
+            key={article.article_id}
+            {...article}
+          />
+        );
       })}
     </ul>
   );

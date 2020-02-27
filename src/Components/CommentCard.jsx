@@ -5,7 +5,7 @@ import VoteUpdater from './VoteUpdater';
 class CommentCard extends Component {
   state = {
     commentDeleted: false,
-    username: null,
+    username: 'jessjelly',
     votes: 0
   };
   render() {
@@ -17,15 +17,17 @@ class CommentCard extends Component {
         {commentDeleted ? (
           <p>Comment has been deleted</p>
         ) : (
-          <li>
+          <li className="comment">
             <p>{body}</p>
             <p>By {author}</p>
             <p>{new Date(created_at).toDateString()}</p>
             <VoteUpdater votes={votes} comment_id={comment_id} />
-            {username === author ? (
-              <button onClick={this.removeComment}>Delete Comment</button>
-            ) : (
+            {username !== author ? (
               <p>Log in to delete your comment</p>
+            ) : (
+              <button className="button " onClick={this.removeComment}>
+                Delete Comment
+              </button>
             )}
           </li>
         )}

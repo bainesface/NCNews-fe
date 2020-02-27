@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dropdown = props => {
+const DropdownSort = props => {
   const { sortValue, changeSortValue } = props;
 
   const handleChange = event => {
@@ -10,8 +10,12 @@ const Dropdown = props => {
 
   return (
     <div className="dropdown">
-      <label className="sortArticles">Sort Articles By</label>
-      <select onChange={handleChange} value={sortValue}>
+      <label className="dropdownLabel">Sort Articles || </label>
+      <select
+        className="dropdownSelect"
+        onChange={handleChange}
+        value={sortValue}
+      >
         <option value="created_at">Date Created</option>
         <option value="comment_count">Comment Count</option>
         <option value="votes">Votes</option>
@@ -20,4 +24,4 @@ const Dropdown = props => {
   );
 };
 
-export default Dropdown;
+export default DropdownSort;

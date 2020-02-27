@@ -25,26 +25,30 @@ class ArticleById extends Component {
           <LoadingIndicator LoadingIndicator={LoadingIndicator} />
         ) : (
           <main>
-            <button>
-              <Link to="/">Back to All Articles</Link>
+            <button className="backButton">
+              <Link className="backButtonLink" to="/">
+                Back to All Articles
+              </Link>
             </button>
-            <h2>{article.title}</h2>
-            <h3>By {article.author}</h3>
-            <p>{new Date(article.created_at).toDateString()}</p>
-            <p>{article.body}</p>
+            <div className="singleArticle">
+              <h2 className="singleArticleHeader">{article.title}</h2>
+              <h3>By {article.author}</h3>
+              <p>{new Date(article.created_at).toDateString()}</p>
+              <p>{article.body}</p>
 
-            <VoteUpdater
-              article_id={article.article_id}
-              votes={article.votes}
-            />
+              <VoteUpdater
+                article_id={article.article_id}
+                votes={article.votes}
+              />
 
-            <p>
-              {' '}
-              <span role="img" aria-label="commentcount">
-                💬{'  '}
-              </span>
-              {article.comment_count} comments
-            </p>
+              <p>
+                {' '}
+                <span role="img" aria-label="commentcount">
+                  💬{'  '}
+                </span>
+                {article.comment_count} comments
+              </p>
+            </div>
             <ToggleContent>
               <Comments article_id={article.article_id} />
             </ToggleContent>

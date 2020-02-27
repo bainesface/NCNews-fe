@@ -13,7 +13,7 @@ class Comments extends Component {
     const { comments, isLoading } = this.state;
     const { article_id } = this.props;
     return (
-      <>
+      <div className="comments">
         {isLoading ? (
           <LoadingIndicator LoadingIndicator={LoadingIndicator} />
         ) : (
@@ -25,7 +25,7 @@ class Comments extends Component {
             <CommentsList comments={comments} />
           </>
         )}
-      </>
+      </div>
     );
   }
 

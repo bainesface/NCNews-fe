@@ -9,12 +9,18 @@ const ArticleCard = ({
   votes,
   author,
   created_at,
-  comment_count
+  comment_count,
+  topic
 }) => {
   return (
     <li>
       <h2 className="articleTitle">
-        <Link to={`/articles/${article_id}`}>{title}</Link>
+        <p className="topic">
+          {`${topic}  `}
+          <Link className="articleTitleLink" to={`/articles/${article_id}`}>
+            {title}
+          </Link>
+        </p>
       </h2>
       <VoteUpdater article_id={article_id} votes={votes} />
       <h4 className="articleAuthor">By {author}</h4>

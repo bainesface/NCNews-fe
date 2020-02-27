@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import ErrorPage from './ErrorPage';
 import WelcomeMessage from './WelcomeMessage';
 
 class Login extends Component {
   state = {
-    user: null,
+    user: { name: 'Jess Jelly' },
     username: '',
     err: null
   };
@@ -13,20 +12,26 @@ class Login extends Component {
     const { username, user, err } = this.state;
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
+        <form className="login" onSubmit={this.handleSubmit}>
           <label>Log In </label>
+          <br></br>
           <input
+            className="loginInput"
             type="text"
             placeholder="username"
             value={username}
             onChange={this.handleChange}
           ></input>
-          <button className="logInButton">Log In</button>
-        </form>
-        <button onClick={this.logOut}>Log Out</button>
-        {user && <WelcomeMessage name={user.name} />}
-
-        {err && <ErrorPage err={err.response} />}
+          <br></br>
+          <button className="loginButton">Log In</button>
+          <span>
+            <button className="logoutButton" onClick={this.logOut}>
+              Log Out
+            </button>
+          </span>
+          {user && <WelcomeMessage name={user.name} />}
+        </form>{' '}
+        {err && <p>Invalid Username</p>}
       </>
     );
   }

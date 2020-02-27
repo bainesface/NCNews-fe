@@ -11,10 +11,11 @@ class AddComment extends Component {
     return (
       <>
         {username ? (
-          <form onSubmit={this.handleSubmit}>
-            <label>
+          <form className="commentForm" onSubmit={this.handleSubmit}>
+            <label className="commentLabel">
               Leave a comment{' '}
               <input
+                className="commentInput"
                 required
                 type="text"
                 placeholder="comment here ..."
@@ -22,7 +23,7 @@ class AddComment extends Component {
                 onChange={this.handleTyping}
               />
             </label>
-            <button>Submit</button>
+            <button className="button">Submit</button>
           </form>
         ) : (
           <p> Log in to leave a comment</p>

@@ -7,9 +7,10 @@ class Nav extends Component {
     const { topics } = this.state;
     return (
       <nav className="topicsNav">
+        <h2 className="topicsHeader">Browse</h2>
         {topics.map(topic => {
           return (
-            <Link key={topic} to={`/topics/${topic}`}>
+            <Link className="topicsLink" key={topic} to={`/topics/${topic}`}>
               {topic}
             </Link>
           );

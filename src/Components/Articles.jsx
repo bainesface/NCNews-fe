@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
 import ArticlesList from './ArticlesList';
-import Dropdown from './Dropdown';
+import DropdownSort from './DropdownSort';
+
 import * as api from '../api';
 import LoadingIndicator from './LoadingIndicator';
+import DropdownOrder from './DropdownOrder';
 
 class Articles extends Component {
   state = {
     articles: [],
     sortValue: '',
+    orderValue: '',
     isLoading: true
   };
   render() {
-    const { articles, isLoading, sortValue } = this.state;
+    const { articles, isLoading, sortValue, orderValue } = this.state;
     return (
       <>
         {isLoading ? (
           <LoadingIndicator LoadingIndicator={LoadingIndicator} />
         ) : (
           <>
-            <Dropdown
+            <DropdownSort
               changeSortValue={this.changeSortValue}
               sortValue={sortValue}
             />
+            <DropdownOrder
+              changeOrderValue={this.changeOrderValue}
+              orderValue={orderValue}
+            />
+
             <ArticlesList articles={articles} />
           </>
         )}
@@ -29,9 +37,9 @@ class Articles extends Component {
     );
   }
 
-  fetchArticles = value => {
+  fetchArticles = (sortValue, orderValue) => {
     api
-      .getArticles(value)
+      .getArticles(sortValue, orderValue)
       .then(res => {
         this.setState({ articles: res, isLoading: false });
       })
@@ -45,14 +53,21 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { sortValue } = this.state;
-    if (prevState.sortValue !== sortValue) {
-      this.fetchArticles(sortValue);
+    const { sortValue, orderValue } = this.state;
+    if (
+      prevState.sortValue !== sortValue ||
+      prevState.orderValue !== orderValue
+    ) {
+      this.fetchArticles(sortValue, orderValue);
     }
   }
 
   changeSortValue = value => {
     this.setState({ sortValue: value });
+  };
+
+  changeOrderValue = value => {
+    this.setState({ orderValue: value });
   };
 }
 
