@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const getArticles = (sortValue, orderValue, topic) => {
-  console.log(orderValue);
   const baseURL = 'https://bainesface-app.herokuapp.com/api';
 
   return axios

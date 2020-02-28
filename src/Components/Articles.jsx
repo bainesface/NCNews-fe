@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ArticlesList from './ArticlesList';
 import DropdownSort from './DropdownSort';
-
 import * as api from '../api';
 import LoadingIndicator from './LoadingIndicator';
 import DropdownOrder from './DropdownOrder';
@@ -9,8 +8,8 @@ import DropdownOrder from './DropdownOrder';
 class Articles extends Component {
   state = {
     articles: [],
-    sortValue: '',
-    orderValue: '',
+    sortValue: 'created_at',
+    orderValue: 'desc',
     isLoading: true
   };
   render() {

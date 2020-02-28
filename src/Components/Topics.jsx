@@ -9,7 +9,7 @@ import LoadingIndicator from './LoadingIndicator';
 class Topics extends Component {
   state = {
     articles: [],
-    sortValue: '',
+    sortValue: 'created_at',
     orderValue: 'desc',
     err: null,
     isLoading: true

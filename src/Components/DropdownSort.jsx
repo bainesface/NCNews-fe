@@ -16,7 +16,7 @@ const DropdownSort = props => {
         onChange={handleChange}
         value={sortValue}
       >
-        <option value="created_at">Date Created</option>
+        <option value="created_at">Newest</option>
         <option value="comment_count">Comment Count</option>
         <option value="votes">Votes</option>
       </select>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+// import UsernameContextConsumer from '../Contexts/Username';
 
 class AddComment extends Component {
   state = {
@@ -9,6 +10,7 @@ class AddComment extends Component {
   render() {
     const { username } = this.state;
     return (
+      // <UsernameContextConsumer>
       <>
         {username ? (
           <form className="commentForm" onSubmit={this.handleSubmit}>
@@ -29,6 +31,7 @@ class AddComment extends Component {
           <p> Log in to leave a comment</p>
         )}
       </>
+      // </UsernameContextConsumer>
     );
   }
 

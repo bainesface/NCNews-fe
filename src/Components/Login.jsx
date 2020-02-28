@@ -60,7 +60,7 @@ class Login extends Component {
   };
 
   logOut = () => {
-    this.setState({ username: '', user: null });
+    this.setState({ username: '', user: { name: 'Jess Jelly' } });
   };
 }
 

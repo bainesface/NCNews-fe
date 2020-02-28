@@ -34,7 +34,7 @@ class ArticleById extends Component {
               <h2 className="singleArticleHeader">{article.title}</h2>
               <h3>By {article.author}</h3>
               <p>{new Date(article.created_at).toDateString()}</p>
-              <p>{article.body}</p>
+              <p className="singleArticleBody">{article.body}</p>
 
               <VoteUpdater
                 article_id={article.article_id}

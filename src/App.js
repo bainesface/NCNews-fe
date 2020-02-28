@@ -7,10 +7,11 @@ import ArticleById from './Components/ArticleById';
 import Topics from './Components/Topics';
 import { Router } from '@reach/router';
 import ErrorPage from './Components/ErrorPage';
-//import LoginPage from './Components/LoginPage';
+// import UsernameContextProvider from './Contexts/Username';
 
 function App() {
   return (
+    // <UsernameContextProvider>
     <main className="App">
       <Header />
       <Nav />
@@ -18,13 +19,13 @@ function App() {
         <Articles path="/" />
         <ArticleById path="articles/:article_id" />
         <Topics path="/topics/:topic" />
-        {/* <LoginPage path="/login" /> */}
         <ErrorPage
           default
           err={{ status: 404, data: { msg: 'URL Not Found' } }}
         />
       </Router>
     </main>
+    // </UsernameContextProvider>
   );
 }
 
