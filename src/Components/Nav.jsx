@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import SearchByUser from './SearchByUser';
 
 class Nav extends Component {
   state = { topics: ['football', 'coding', 'cooking'] };
+
   render() {
     const { topics } = this.state;
     return (
@@ -15,6 +17,7 @@ class Nav extends Component {
             </Link>
           );
         })}
+        <SearchByUser changeSearchInput={this.changeSearchInput} />
       </nav>
     );
   }

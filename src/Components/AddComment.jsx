@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-// import UsernameContextConsumer from '../Contexts/Username';
+import { UsernameContext } from '../Contexts/Username';
 
 class AddComment extends Component {
+  static contextType = UsernameContext;
+
   state = {
-    comment: '',
-    username: 'jessjelly'
+    comment: ''
   };
+
   render() {
-    const { username } = this.state;
+    const { user } = this.context;
+
     return (
-      // <UsernameContextConsumer>
-      <>
-        {username ? (
+      <div className="form">
+        {user ? (
           <form className="commentForm" onSubmit={this.handleSubmit}>
             <label className="commentLabel">
               Leave a comment{' '}
@@ -30,8 +32,7 @@ class AddComment extends Component {
         ) : (
           <p> Log in to leave a comment</p>
         )}
-      </>
-      // </UsernameContextConsumer>
+      </div>
     );
   }
 
@@ -40,16 +41,17 @@ class AddComment extends Component {
   };
 
   handleSubmit = event => {
-    const { article_id, showComment } = this.props;
-    const { username, comment } = this.state;
+    const { article_id, addNewComment } = this.props;
+    const { comment } = this.state;
+    const { user } = this.context;
 
     const commentToPost = {
-      username: username,
+      username: user,
       body: comment
     };
     event.preventDefault();
     api.postComment(commentToPost, article_id).then(({ data }) => {
-      showComment(data.comment);
+      addNewComment(data.comment);
     });
     this.setState({ comment: '' });
   };

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import ErrorPage from './ErrorPage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 class VoteUpdater extends Component {
   state = {
@@ -21,9 +23,7 @@ class VoteUpdater extends Component {
           }}
           disabled={updatedVotes === 1}
         >
-          <span role="img" aria-label="upArrow">
-            👍
-          </span>
+          <FontAwesomeIcon icon={faChevronUp} />
         </button>{' '}
         <p className="voteCount">{votes + updatedVotes} </p>
         <button
@@ -32,12 +32,7 @@ class VoteUpdater extends Component {
           }}
           disabled={updatedVotes === -1}
         >
-          {' '}
-          <span role="img" aria-label="downArrow">
-            <span role="img" aria-label="uparrow">
-              👎
-            </span>
-          </span>
+          <FontAwesomeIcon icon={faChevronDown} />
         </button>
         {err && <ErrorPage err={err} />}
       </div>

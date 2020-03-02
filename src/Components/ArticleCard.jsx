@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { Link } from '@reach/router';
 import VoteUpdater from './VoteUpdater';
 
@@ -26,10 +27,7 @@ const ArticleCard = ({
       <h4 className="articleAuthor">By {author}</h4>
       <p className="articleDate">{new Date(created_at).toDateString()}</p>
       <p className="articleCommentCount">
-        <span role="img" aria-label="commentcount">
-          💬{' '}
-        </span>
-        {comment_count} comments
+        <FontAwesomeIcon icon={faComments} /> {comment_count}
       </p>
     </li>
   );

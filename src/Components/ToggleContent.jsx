@@ -5,12 +5,22 @@ class ToggleContent extends Component {
     isContentDisplayed: false
   };
   render() {
+    const { comment_count, newCommentNum } = this.props;
+    const { isContentDisplayed } = this.state;
     return (
       <div>
-        <button className="button" onClick={this.toggleVisibility}>
-          See/Hide Comments
-        </button>
-        {this.state.isContentDisplayed && <div>{this.props.children}</div>}
+        {isContentDisplayed === false ? (
+          <button className="button" onClick={this.toggleVisibility}>
+            {`See ${+comment_count + newCommentNum} Comments`}
+          </button>
+        ) : (
+          <div>
+            <button className="button" onClick={this.toggleVisibility}>
+              {`Hide ${+comment_count + newCommentNum} Comments`}
+            </button>
+            {this.props.children}
+          </div>
+        )}
       </div>
     );
   }

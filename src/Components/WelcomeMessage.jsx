@@ -1,8 +1,16 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 const WelcomeMessage = props => {
-  const { name } = props;
-  return <p>Welcome {name}</p>;
+  const { name, username } = props;
+  return (
+    <p className="welcomeMessage">
+      Welcome{' '}
+      <Link className="usernameLink" to={`/users/${username}`}>
+        {name}
+      </Link>
+    </p>
+  );
 };
 
 export default WelcomeMessage;

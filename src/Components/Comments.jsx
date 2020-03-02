@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import CommentsList from './CommentsList';
-import AddComment from './AddComment';
+
 import LoadingIndicator from './LoadingIndicator';
 
 class Comments extends Component {
@@ -11,18 +11,18 @@ class Comments extends Component {
   };
   render() {
     const { comments, isLoading } = this.state;
-    const { article_id } = this.props;
+    const { changeCommentNum } = this.props;
+
     return (
       <div className="comments">
         {isLoading ? (
           <LoadingIndicator LoadingIndicator={LoadingIndicator} />
         ) : (
           <>
-            <AddComment
-              article_id={article_id}
-              showComment={this.showComment}
+            <CommentsList
+              comments={comments}
+              changeCommentNum={changeCommentNum}
             />
-            <CommentsList comments={comments} />
           </>
         )}
       </div>
@@ -36,9 +36,10 @@ class Comments extends Component {
     });
   }
 
-  showComment = comment => {
+  showComment = () => {
+    const { newComment } = this.props;
     this.setState(currentState => {
-      return { comments: [comment, ...currentState.comments] };
+      return { comments: [newComment, ...currentState.comments] };
     });
   };
 }

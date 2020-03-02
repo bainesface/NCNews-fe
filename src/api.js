@@ -1,11 +1,16 @@
 import axios from 'axios';
 
-export const getArticles = (sortValue, orderValue, topic) => {
+export const getArticles = (sortValue, orderValue, topic, username) => {
   const baseURL = 'https://bainesface-app.herokuapp.com/api';
 
   return axios
     .get(baseURL + '/articles', {
-      params: { sort_by: sortValue, order: orderValue, topic: topic }
+      params: {
+        sort_by: sortValue,
+        order: orderValue,
+        topic: topic,
+        author: username
+      }
     })
     .then(({ data }) => {
       return data.articles;
@@ -58,4 +63,9 @@ export const updateVote = (votes, comment_id, article_id) => {
   } else if (article_id) {
     return axios.patch(`${baseURL}/articles/${article_id}`, patchInput);
   }
+};
+
+export const postArticle = articleToPost => {
+  const baseURL = 'https://bainesface-app.herokuapp.com/api';
+  return axios.post(`${baseURL}/articles`, articleToPost);
 };
