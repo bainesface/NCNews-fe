@@ -69,3 +69,9 @@ export const postArticle = articleToPost => {
   const baseURL = 'https://bainesface-app.herokuapp.com/api';
   return axios.post(`${baseURL}/articles`, articleToPost);
 };
+
+export const deleteArticle = article_id => {
+  const baseURL = 'https://bainesface-app.herokuapp.com/api';
+
+  return axios.delete(`${baseURL}/articles/${article_id}`);
+};

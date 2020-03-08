@@ -6,14 +6,28 @@
   grid-template-columns: auto 200px;
   grid-template-areas:
     'header header'
-    'articles nav';
+    'main nav';
   font-size: 12px;
+}
+
+.mainContent {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @media only screen and (max-width: 600px) {
   .App {
     display: flex;
     flex-direction: column;
+    align-content: center;
+  }
+  .mainContent {
+    min-width: 65vh;
+    margin-top: 0;
   }
 }
 
@@ -31,14 +45,12 @@
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   color: #fff;
   margin: 0;
   padding: 1em;
   border-bottom-color: #08090a;
   border-bottom-style: double;
   border-bottom-width: 10px;
-  width: 100%;
 }
 
 .mainHeader {
@@ -49,10 +61,14 @@
   padding-right: 50px;
 }
 
+.mainHeader:hover {
+  color: #f96652;
+}
+
 .login {
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
+  padding-right: 3em;
+  padding-left: 1em;
+  padding-top: 1em;
 }
 
 .login > label {
@@ -65,6 +81,8 @@
   margin: 0.2em;
   padding: 0.5em;
   border-radius: 10px;
+  text-align: center;
+  border: none;
 }
 .loginButton {
   background-color: #f96652;
@@ -89,10 +107,10 @@
   color: #fff;
   border: none;
   border-radius: 10px;
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.7em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
   margin-top: 0.5em;
   font-weight: bold;
 }
@@ -128,10 +146,52 @@
   color: #08090a;
 }
 
+@media only screen and (max-width: 600px) {
+  .header {
+    min-width: 65vh;
+    max-width: 90vh;
+  }
+
+  .mainHeader {
+    font-size: 1.8em;
+    padding-left: 1em;
+    padding-right: 0.5em;
+  }
+
+  .login {
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 0;
+  }
+
+  .login > label {
+    display: none;
+  }
+
+  .loginInput {
+    margin: 0;
+    width: 80px;
+    padding: 0.2em;
+    padding-bottom: 0.3em;
+  }
+
+  .loginButton {
+    font-size: 0.8em;
+  }
+
+  .welcomeMessage {
+    grid-area: welcome;
+    font-size: 0.7em;
+  }
+
+  .loader {
+    padding: 2em;
+    justify-self: center;
+  }
+}
 /* css for articles */
 
 .articlesList {
-  grid-area: articles;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -141,12 +201,11 @@
 .articlesList > li {
   background-color: #f4f7f5;
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr;
-  grid-template-columns: 1fr 3fr 2fr 2fr;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 1fr 3fr 3fr;
   grid-template-areas:
-    'votes header header header'
-    'votes author author author'
-    'votes date commentCount commentCount';
+    'votes header header '
+    'votes author date';
   border-radius: 10px;
   padding-left: 0;
   padding-right: 0.5em;
@@ -157,7 +216,7 @@
 
 .articleTitle {
   grid-area: header;
-  padding-top: 0.5em;
+  padding-top: 0;
   padding-right: 1em;
   margin: 0;
   font-size: 1.8em;
@@ -169,9 +228,10 @@
 .articleVotes {
   grid-area: votes;
   text-align: center;
-  padding-top: 3em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   margin: 0;
 }
 
@@ -212,10 +272,11 @@
 
 .articleDate {
   grid-area: date;
-  font-size: 1em;
+  font-size: 1.1em;
   padding: 0.2em;
-  margin: 0;
-  text-align: left;
+  margin-top: 0.1em;
+  margin-right: 0.4em;
+  text-align: right;
 }
 
 .articleCommentCount {
@@ -233,10 +294,34 @@
   padding: 1em;
 }
 
+@media only screen and (max-width: 600px) {
+  .articlesList > li {
+    margin-right: 1em;
+  }
+  .articleTitle {
+    font-size: 1.6em;
+  }
+  .voteCount {
+    font-size: 1em;
+  }
+  .articleVotes > button {
+    font-size: 1.5em;
+  }
+  .articleAuthor {
+    font-size: 1em;
+  }
+
+  .articleDate {
+    font-size: 0.8em;
+  }
+}
+
 /* css for nav bar */
 
 .topicsNav {
   margin-top: 1em;
+  margin-left: 2em;
+  margin-right: 1.75em;
   grid-area: nav;
   justify-self: center;
   background-color: #f96652;
@@ -278,6 +363,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .search > label {
@@ -299,6 +385,7 @@
   border: none;
   border-radius: 10px;
   text-align: center;
+  margin-right: 0;
 }
 
 .searchLink {
@@ -308,17 +395,21 @@
 
 @media only screen and (max-width: 600px) {
   .topicsNav {
-    width: 100%;
-    align-self: center;
+    min-width: 65vh;
+    max-width: 90vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    margin: 0;
+    align-content: center;
+    justify-content: space-around;
+    margin-bottom: 1em;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
     height: 1.5em;
-    padding-top: 0.5em;
-    padding-bottom: 0.75em;
-
-    padding-right: 0;
+    padding-top: 1em;
+    padding-left: 0;
+    padding-right: 2em;
+    padding-bottom: 1.2em;
     border-radius: 0;
   }
 
@@ -327,8 +418,9 @@
   }
 
   .topicsLink {
-    font-size: 1.2em;
+    font-size: 1.3em;
     padding: 0;
+    margin: 0;
   }
 
   .search > label {
@@ -337,17 +429,23 @@
   }
 
   .search > input {
-    margin: 0.1em;
+    margin: 0;
+    max-width: 50px;
+    padding-top: 0.1em;
+    padding-right: 0.1em;
+    padding-left: 0em;
+    padding-bottom: 0.2em;
+    max-height: 1.5em;
   }
 
   .search > button {
-    margin: 0.1em;
     background-color: #08090a;
     color: #fff;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 0.6em;
+    font-size: 0.8em;
     border: none;
+    margin: 0;
   }
 }
 
@@ -356,7 +454,7 @@
 .dropdown {
   margin-left: 1em;
   margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   padding: 0.5em;
   background-color: #08090a;
   border-radius: 10px;
@@ -383,13 +481,14 @@
   .dropdown {
     background-color: transparent;
     padding: 0;
-    margin-top: 0.5em;
-    margin-bottom: 0;
+    margin-top: 0.2em;
+    margin-bottom: 0.3em;
     border: none;
   }
 
   .dropdownLabel {
     display: none;
+    font-size: 1em;
   }
 
   .dropdownSelect {
@@ -425,7 +524,17 @@
 }
 
 .singleArticleBody {
-  font-size: 1.6em;
+  font-size: 1.5em;
+  text-rendering: optimizeLegibility;
+}
+
+@media only screen and (max-width: 600px) {
+  .singleArticleHeader {
+    font-size: 1.4em;
+  }
+  .singleArticleBody {
+    font-size: 1.1em;
+  }
 }
 
 .backButton {
@@ -465,6 +574,12 @@
   border: none;
 }
 
+@media only screen and (max-width: 600px) {
+  .button {
+    font-size: 0.8em;
+  }
+}
+
 .button:hover {
   background-color: #f96652;
 }
@@ -498,7 +613,7 @@
   background-color: #f96652;
   border-radius: 10px;
   padding-top: 0.3em;
-  width: 400px;
+  width: 430px;
   display: flex;
   align-content: center;
   margin: 0;
@@ -508,8 +623,10 @@
 
 .commentLabel {
   text-align: left;
-  margin-left: 1em;
+  margin-left: 1.3em;
   margin-top: 0.5em;
+  color: #fff;
+  font-weight: bold;
 }
 
 .commentInput {
@@ -518,14 +635,141 @@
   height: 30px;
   margin-top: 0.5em;
   margin-bottom: 1em;
+  padding: 1em;
+  border: none;
 }
 
 @media only screen and (max-width: 600px) {
   .commentForm {
+    margin: 1em;
     width: 300px;
   }
 
   .commentInput {
     width: 200px;
+    padding: 0.5em;
+  }
+}
+
+/* css for userpage */
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.avatar {
+  height: 8em;
+  padding: 3em;
+}
+
+@media only screen and (max-width: 600px) {
+  .avatar {
+    height: 4em;
+    padding-top: 1.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.5em;
+  }
+}
+
+/* css for add article */
+
+.articleForm {
+  margin-left: 3em;
+  margin-right: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1.5fr 2fr 8fr 1.5fr;
+  grid-template-areas:
+    '. articleLabel articleLabel articleLabel . '
+    'articleTitleInput articleTitleInput articleTitleInput dropdownTopics dropdownTopics'
+    'articleInputBody articleInputBody articleInputBody articleInputBody articleInputBody'
+    '. . submit . .';
+  background-color: #f4f7f5;
+  border-radius: 10px;
+}
+
+.articleLabel {
+  grid-area: articleLabel;
+  font-size: 1.8em;
+  font-weight: bold;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0;
+}
+
+.articleTitleInput {
+  grid-area: articleTitleInput;
+  border-radius: 10px;
+  border: none;
+  margin: 1em;
+  font-size: 1.2em;
+  padding: 1em;
+}
+
+.dropdownTopics {
+  grid-area: dropdownTopics;
+  background-color: #08090a;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  margin: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.articleInputBody {
+  grid-area: articleInputBody;
+  border-radius: 10px;
+  border: none;
+  margin: 1em;
+  text-align: top;
+  padding: 1em;
+  font-size: 1.2em;
+}
+
+.addArticleButton {
+  grid-area: submit;
+  width: 10em;
+  height: 2em;
+  background-color: #08090a;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.addArticleButton:hover {
+  background-color: #f96652;
+}
+
+@media only screen and (max-width: 600px) {
+  .articleForm {
+    margin: 1em;
+  }
+  .articleLabel {
+    font-size: 1.2em;
+  }
+
+  .articleTitleInput {
+    font-size: 0.8em;
+  }
+
+  .dropdownTopics {
+    font-size: 0.8em;
+  }
+
+  .articleInputBody {
+    font-size: 0.8em;
+  }
+
+  .addArticleButton {
+    margin-left: 12em;
+    font-size: 0.8em;
+    margin-top: 0.5em;
   }
 }

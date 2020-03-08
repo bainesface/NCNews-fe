@@ -1,82 +1,57 @@
 import React, { Component } from 'react';
+import { UsernameContext } from '../Contexts/Username';
+import AddArticle from './AddArticle';
 import * as api from '../api';
-import ArticlesList from './ArticlesList';
-import ErrorPage from './ErrorPage';
-import DropdownSort from './DropdownSort';
-import DropdownOrder from './DropdownOrder';
-import LoadingIndicator from './LoadingIndicator';
 
 class UserPage extends Component {
+  static contextType = UsernameContext;
   state = {
-    articles: [],
-    sortValue: 'created_at',
-    orderValue: 'desc',
-    err: null,
+    userDetails: {},
     isLoading: true
   };
-
   render() {
-    const { articles, err, sortValue, isLoading, orderValue } = this.state;
+    const { user } = this.context;
+    const { avatar_url, name } = this.state.userDetails;
 
-    if (err) return <ErrorPage err={err.response} />;
     return (
-      <>
-        {isLoading ? (
-          <LoadingIndicator LoadingIndicator={LoadingIndicator} />
+      <div>
+        {user ? (
+          <>
+            {' '}
+            <div className="user">
+              {' '}
+              <img className="avatar" src={avatar_url} alt={name} />
+            </div>
+            <AddArticle />{' '}
+          </>
         ) : (
-          <div>
-            <DropdownSort
-              changeSortValue={this.changeSortValue}
-              sortValue={sortValue}
-            />
-            <DropdownOrder
-              changeOrderValue={this.changeOrderValue}
-              orderValue={orderValue}
-            />
-            <ArticlesList articles={articles} />
-          </div>
+          <p>Log in to add an article</p>
         )}
-      </>
+      </div>
     );
   }
 
-  fetchArticlesByUser = (sortValue, orderValue) => {
-    const { topic, username } = this.props;
+  fetchUser = () => {
+    const { user } = this.context;
 
-    api
-      .getArticles(sortValue, orderValue, topic, username)
-      .then(res => {
-        this.setState({ articles: res, isLoading: false });
-      })
-      .catch(err => {
-        this.setState({ err });
-      });
+    user &&
+      api
+        .getUser(user)
+        .then(res => {
+          this.setState({
+            userDetails: res,
+            err: null,
+            loggedIn: true
+          });
+        })
+        .catch(err => {
+          this.setState({ err, user: null });
+        });
   };
 
   componentDidMount() {
-    this.fetchArticlesByUser();
+    this.fetchUser();
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { sortValue, orderValue } = this.state;
-    if (prevProps.uri !== this.props.uri) {
-      this.fetchArticlesByUser();
-    }
-    if (
-      prevState.sortValue !== sortValue ||
-      prevState.orderValue !== orderValue
-    ) {
-      this.fetchArticlesByUser(sortValue, orderValue);
-    }
-  }
-
-  changeSortValue = value => {
-    this.setState({ sortValue: value });
-  };
-
-  changeOrderValue = value => {
-    this.setState({ orderValue: value });
-  };
 }
 
 export default UserPage;

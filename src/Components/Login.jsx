@@ -20,19 +20,22 @@ class Login extends Component {
     return (
       <>
         <form className="login" onSubmit={this.handleSubmit}>
-          <label>Log In </label>
-          <br></br>
-          <input
-            className="loginInput"
-            type="text"
-            required
-            placeholder="username"
-            value={usernameInput}
-            onChange={this.handleChange}
-          ></input>
-          <br></br>
           {loggedIn === false ? (
-            <button className="loginButton">Log In </button>
+            <>
+              {' '}
+              <label>Log In </label>
+              <br></br>
+              <input
+                className="loginInput"
+                type="text"
+                required
+                placeholder="username"
+                value={usernameInput}
+                onChange={this.handleChange}
+              ></input>
+              <br></br>
+              <button className="loginButton">Log In </button>
+            </>
           ) : (
             <button className="logoutButton" onClick={this.logOut}>
               <Link className="logoutLink" to="/">
@@ -83,7 +86,9 @@ class Login extends Component {
   };
 
   logOut = () => {
+    const { changeUser } = this.context;
     this.setState({ usernameInput: '', user: null, loggedIn: false });
+    changeUser('');
   };
 }
 

@@ -18,7 +18,7 @@ class AddComment extends Component {
           <form className="commentForm" onSubmit={this.handleSubmit}>
             <label className="commentLabel">
               Leave a comment{' '}
-              <input
+              <textarea
                 className="commentInput"
                 required
                 type="text"

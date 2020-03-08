@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments } from '@fortawesome/free-solid-svg-icons';
+
 import { Link } from '@reach/router';
 import VoteUpdater from './VoteUpdater';
 
@@ -10,7 +9,7 @@ const ArticleCard = ({
   votes,
   author,
   created_at,
-  comment_count,
+
   topic
 }) => {
   return (
@@ -26,9 +25,6 @@ const ArticleCard = ({
       <VoteUpdater article_id={article_id} votes={votes} />
       <h4 className="articleAuthor">By {author}</h4>
       <p className="articleDate">{new Date(created_at).toDateString()}</p>
-      <p className="articleCommentCount">
-        <FontAwesomeIcon icon={faComments} /> {comment_count}
-      </p>
     </li>
   );
 };

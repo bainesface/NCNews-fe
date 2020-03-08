@@ -5,10 +5,11 @@ import Nav from './Components/Nav';
 import Articles from './Components/Articles';
 import ArticleById from './Components/ArticleById';
 import Topics from './Components/Topics';
-import UserPage from './Components/UserPage';
+import ArticlesByUser from './Components/ArticlesByUser';
 import { Router } from '@reach/router';
 import ErrorPage from './Components/ErrorPage';
 import UsernameContextProvider from './Contexts/Username';
+import UserPage from './Components/UserPage';
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
         <Nav />
         <Router className="mainContent">
           <Articles path="/" />
-          <ArticleById path="articles/:article_id" />
+          <ArticleById path="/articles/:article_id" />
           <Topics path="/topics/:topic" />
+          <ArticlesByUser path="/articles/users/:username" />
           <UserPage path="/users/:username" />
           <ErrorPage
             default

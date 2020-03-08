@@ -19,7 +19,7 @@ class SearchByUser extends Component {
           onChange={this.handleTyping}
         ></input>
         <button className="button" onClick={this.handleClick}>
-          <Link className="searchLink" to={`/users/${author}`}>
+          <Link className="searchLink" to={`articles/users/${author}`}>
             Go!
           </Link>
         </button>
