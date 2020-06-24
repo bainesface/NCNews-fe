@@ -16,7 +16,7 @@ However, in order to fully interact with the site you will need to log in with o
 
 Once logged in, the user will be able to add and delete their own articles and comments. Feel free switch between users.
 
-If you would like to view the backend API for this project please find the code [here](https://bainesface-app.herokuapp.com/api) and the hosted version [here](https://github.com/bainesface/backend_news).
+If you would like to view the backend API for this project please find the code [here](https://github.com/bainesface/backend_news) and the hosted version [here](https://bainesface-app.herokuapp.com/api).
 
 ### **Prerequisites**
 

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from '@reach/router';
 import VoteUpdater from './VoteUpdater';
 
@@ -10,7 +9,7 @@ const ArticleCard = ({
   author,
   created_at,
 
-  topic
+  topic,
 }) => {
   return (
     <li>

@@ -1,16 +1,16 @@
 import React from 'react';
 
-const DropdownSort = (props) => {
+const DropdownSort = props => {
   const { sortValue, changeSortValue } = props;
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { value } = event.target;
     changeSortValue(value);
   };
 
   return (
     <div className="dropdown">
-      <label className="dropdownLabel">Sort Articles</label>
+      <label className="dropdownLabel">Sort Articles || </label>
       <select
         className="dropdownSelect"
         onChange={handleChange}

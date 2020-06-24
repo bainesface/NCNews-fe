@@ -10,7 +10,7 @@ const DropdownSort = (props) => {
 
   return (
     <div className="dropdown">
-      <label className="dropdownLabel">Sort Articles</label>
+      <label className="dropdownLabel">Sort Articles </label>
       <select
         className="dropdownSelect"
         onChange={handleChange}

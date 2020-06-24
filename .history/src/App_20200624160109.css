@@ -53,6 +53,7 @@
   border-bottom-color: #08090a;
   border-bottom-style: double;
   border-bottom-width: 10px;
+  position: fixed;
 }
 
 .mainHeader {
@@ -197,7 +198,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 50em;
+  /* height: 50em; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .articlesList > li {
@@ -402,7 +406,7 @@
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin-bottom: 1em;
     margin-top: 0;
     margin-left: 0;
